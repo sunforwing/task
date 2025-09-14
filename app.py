@@ -83,7 +83,9 @@ except Exception as e:
 def dr_hypothesis(patient_case: str, vectorstore: FAISS, top_k=3):
     if not vectorstore:
         return "向量库未加载，无法执行RAG检索。"
-    docs = vectorstore.similarity_search(patient_case, k=top_k)
+    # docs = vectorstore.similarity_search(patient_case, k=top_k)
+    docs_and_scores = vectorstore.similarity_search_with_score(patient_case, k=top_k)
+    docs = [d for d, score in docs_and_scores if score < 0.5]
     context = "\n".join([doc.page_content for doc in docs])
     prompt = f"""
         你是Dr.Hypothesis。根据患者病例信息，结合以下检索到的文献和指南内容，生成一个诊断假设列表：
