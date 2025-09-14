@@ -159,7 +159,6 @@ def generate_diagnosis(record: MedicalRecord):
     def generate_chunks():
         for chunk in response_stream:
             yield chunk.content
-
     return StreamingResponse(generate_chunks(), media_type="application/json")
 
 
