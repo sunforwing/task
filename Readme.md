@@ -43,13 +43,13 @@ docker save -o Cardiomind-Agent.tar myimage:latest
 ###### 部署docker
 
 # 导入docker镜像
-docker load -i Cardiomind-Agent.tar
+docker load -i sunweiyi-Cardiomind-Agent.tar
 
 # 确认镜像
 docker images
 
 # 运行容器
-docker run -d -p 8080:8080 --name mycontainer1 sunweiyi-Cardiomind-Agent
+docker run -d -p 8080:8080 --name mycontainer1 镜像名称
 
 ```
 
